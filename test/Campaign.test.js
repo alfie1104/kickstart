@@ -29,3 +29,10 @@ beforeEach(async () => {
     campaignAddress
   ); //to use already deployed contract, the contract address have to be specified
 });
+
+describe("Campaigns", () => {
+  it("deploys a factory and a campaign", () => {
+    assert.ok(factory.options.address);
+    assert.ok(campaign.options.address);
+  });
+});
