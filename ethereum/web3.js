@@ -1,9 +1,8 @@
 import Web3 from "web3";
-require("dotenv").config({
-  path: "../.env",
-}); //environment variable
 
 let web3;
+
+const PROVIDER_URL = process.env.GORLI_URL;
 
 if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
   // We are in the browser and metamask is running.
@@ -11,7 +10,7 @@ if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
   web3 = new Web3(window.ethereum);
 } else {
   //We are on the server *OR* the user is not running metamask
-  const provider = new Web3.providers.HttpProvider(process.env.GORLI_URL);
+  const provider = new Web3.providers.HttpProvider(PROVIDER_URL);
   web3 = new Web3(provider);
 }
 
