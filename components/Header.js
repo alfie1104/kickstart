@@ -3,8 +3,12 @@ import { Menu } from "semantic-ui-react";
 
 const Header = (props) => {
   return (
-    <Menu>
-      <Menu.Item>CrowdCoin</Menu.Item>
+    <Menu
+      style={{
+        marginTop: "10px",
+      }}
+    >
+      <Menu.Item>Crowd</Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>Campaigns</Menu.Item>
         <Menu.Item>+</Menu.Item>
