@@ -16,7 +16,7 @@ const Requests = (props) => {
           request={request}
           address={props.address}
           approversCount={props.approversCount}
-          id={index + 1}
+          id={index}
         />
       );
     });

@@ -18,10 +18,15 @@ const RequestRow = ({ request, address, id, approversCount }) => {
     });
   };
 
-  const onFinalize = (event) => {
+  const onFinalize = async (event) => {
     event.preventDefault();
 
-    console.log("Finalize");
+    const campaign = Campaign(address);
+    const accounts = await web3.eth.getAccounts();
+
+    await campaign.methods.finalizeRequest(id).send({
+      from: accounts[0],
+    });
   };
 
   return (
@@ -39,7 +44,7 @@ const RequestRow = ({ request, address, id, approversCount }) => {
         </Button>
       </Cell>
       <Cell>
-        <Button color="red" basic onClick={onFinalize}>
+        <Button color="teal" basic onClick={onFinalize}>
           Finalize
         </Button>
       </Cell>
