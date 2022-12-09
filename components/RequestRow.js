@@ -5,7 +5,8 @@ import Campaign from "../ethereum/campaign";
 
 const RequestRow = ({ request, address, id, approversCount }) => {
   const { Row, Cell } = Table;
-  const { description, value, recipient, approvalCount } = request;
+  const { description, value, recipient, approvalCount, complete } = request;
+  const readyToFinalize = approvalCount > approversCount / 2;
 
   const onApprove = async (event) => {
     event.preventDefault();
@@ -30,7 +31,7 @@ const RequestRow = ({ request, address, id, approversCount }) => {
   };
 
   return (
-    <Row>
+    <Row disabled={complete} positive={readyToFinalize && !complete}>
       <Cell>{id}</Cell>
       <Cell>{description}</Cell>
       <Cell>{web3.utils.fromWei(value, "ether")}</Cell>
@@ -39,14 +40,18 @@ const RequestRow = ({ request, address, id, approversCount }) => {
         {approvalCount}/{approversCount}
       </Cell>
       <Cell>
-        <Button color="green" basic onClick={onApprove}>
-          Approve
-        </Button>
+        {complete ? null : (
+          <Button color="green" basic onClick={onApprove}>
+            Approve
+          </Button>
+        )}
       </Cell>
       <Cell>
-        <Button color="teal" basic onClick={onFinalize}>
-          Finalize
-        </Button>
+        {complete ? null : (
+          <Button color="teal" basic onClick={onFinalize}>
+            Finalize
+          </Button>
+        )}
       </Cell>
     </Row>
   );
