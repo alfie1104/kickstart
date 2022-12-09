@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Button, Card } from "semantic-ui-react";
 import Layout from "../components/Layout";
@@ -8,7 +9,11 @@ function CampaignIndex(props) {
     const items = props.campaigns.map((address) => {
       return {
         header: address,
-        description: <a>View Campaign</a>,
+        description: (
+          <Link href={`/campaigns/${address}`}>
+            <a>View Campaign</a>
+          </Link>
+        ),
         fluid: true,
       };
     });
@@ -20,12 +25,14 @@ function CampaignIndex(props) {
     <Layout>
       <div>
         <h3>Open Campaigns</h3>
-        <Button
-          floated="right"
-          content="Create Campaign"
-          icon="add circle"
-          primary
-        />
+        <Link href={"/campaigns/new"}>
+          <Button
+            floated="right"
+            content="Create Campaign"
+            icon="add circle"
+            primary
+          />
+        </Link>
         {renderCampaigns()}
       </div>
     </Layout>
