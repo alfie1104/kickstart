@@ -7,7 +7,7 @@ const CampaignShow = (props) => {
   const { address } = router.query;
   return (
     <Layout>
-      <h3>{address}</h3>
+      <h3>Campaign Show</h3>
     </Layout>
   );
 };
