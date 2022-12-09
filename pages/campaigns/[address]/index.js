@@ -57,7 +57,7 @@ const CampaignShow = (props) => {
       <Grid>
         <Grid.Column width={10}>{renderCards()}</Grid.Column>
         <Grid.Column width={6}>
-          <ContributeForm />
+          <ContributeForm address={props.address} />
         </Grid.Column>
       </Grid>
     </Layout>
@@ -69,6 +69,7 @@ CampaignShow.getInitialProps = async (ctx) => {
   const summary = await campaign.methods.getSummary().call();
 
   return {
+    address: ctx.query.address,
     minimumContribution: summary[0],
     balance: summary[1],
     requestsCount: summary[2],
