@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
+import Link from "next/link";
 
 const Header = (props) => {
   return (
@@ -8,10 +9,16 @@ const Header = (props) => {
         marginTop: "10px",
       }}
     >
-      <Menu.Item>Crowd</Menu.Item>
+      <Link href="/" legacyBehavior>
+        <a className="item">Crowd</a>
+      </Link>
       <Menu.Menu position="right">
-        <Menu.Item>Campaigns</Menu.Item>
-        <Menu.Item>+</Menu.Item>
+        <Link href="/" legacyBehavior>
+          <a className="item">Campaigns</a>
+        </Link>
+        <Link href="/campaigns/new" legacyBehavior>
+          <a className="item">+</a>
+        </Link>
       </Menu.Menu>
     </Menu>
   );
