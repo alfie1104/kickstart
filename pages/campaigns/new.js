@@ -8,10 +8,12 @@ class CampaignsNew extends React.Component {
   state = {
     minimumContribution: "",
     errorMessage: "",
+    loading: false,
   };
 
   onSubmit = async (event) => {
     event.preventDefault();
+    this.setState({ loading: true, errorMessage: "" });
 
     try {
       const accounts = await web3.eth.getAccounts();
@@ -23,6 +25,8 @@ class CampaignsNew extends React.Component {
         errorMessage: err.message,
       });
     }
+
+    this.setState({ loading: false });
   };
 
   render() {
@@ -42,7 +46,13 @@ class CampaignsNew extends React.Component {
             />
           </Form.Field>
           <Message error header="Oops!" content={this.state.errorMessage} />
-          <Button primary>Create!</Button>
+          <Button
+            loading={this.state.loading}
+            primary
+            disabled={this.state.loading}
+          >
+            Create!
+          </Button>
         </Form>
       </Layout>
     );
