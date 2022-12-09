@@ -11,7 +11,25 @@ const campaignPath = path.resolve(__dirname, "contracts", "Campaign.sol");
 const source = fs.readFileSync(campaignPath, "utf8");
 
 //3. Compile both contracts with solidity compiler
-const output = solc.compile(source, 1).contracts;
+const input = {
+  language: "Solidity",
+  sources: {
+    "Campaign.sol": {
+      content: source,
+    },
+  },
+  settings: {
+    outputSelection: {
+      "*": {
+        "*": ["*"],
+      },
+    },
+  },
+};
+
+const output = JSON.parse(solc.compile(JSON.stringify(input))).contracts[
+  "Campaign.sol"
+];
 
 //4. Write output to the 'build' directory
 fs.ensureDirSync(buildPath); //create build folder
