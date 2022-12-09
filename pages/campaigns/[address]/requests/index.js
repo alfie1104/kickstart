@@ -26,7 +26,9 @@ const Requests = (props) => {
     <Layout>
       <h3>Requests</h3>
       <Link href={`/campaigns/${props.address}/requests/new`}>
-        <Button primary>Add Request</Button>
+        <Button primary floated="right" style={{ marginBottom: 10 }}>
+          Add Request
+        </Button>
       </Link>
       <Table>
         <Header>
@@ -42,6 +44,7 @@ const Requests = (props) => {
         </Header>
         <Body>{renderRows()}</Body>
       </Table>
+      <div>Found {props.requestCount} requests.</div>
     </Layout>
   );
 };
