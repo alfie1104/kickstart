@@ -1,4 +1,4 @@
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import ContributeForm from "../../../components/ContributeForm";
 import Layout from "../../../components/Layout";
 import Campaign from "../../../ethereum/campaign";
@@ -54,8 +54,12 @@ const CampaignShow = (props) => {
   return (
     <Layout>
       <h3>Campaign Show</h3>
-      {renderCards()}
-      <ContributeForm />
+      <Grid>
+        <Grid.Column width={10}>{renderCards()}</Grid.Column>
+        <Grid.Column width={6}>
+          <ContributeForm />
+        </Grid.Column>
+      </Grid>
     </Layout>
   );
 };
